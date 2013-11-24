@@ -1,6 +1,6 @@
 angular.module('services')
 .service('Api', function ($http, Cookie) {
-    var instance = 'http://localhost:8001';
+    var instance = 'http://172.28.101.46:8000';
 
     var call = function (method, url, data) {
         return $http({
@@ -39,21 +39,21 @@ angular.module('services')
 .service('DS', function () {
     var DS = {
         location: {
-            name: 'Baneasa Shopping City',
-            pic: 'http://www.petocuri.ro/uploads/pics/ENTERTAINMENT_20ENTRANCE_20BANEASA_20SHOPPING_20CITY.jpg',
-            desc: 'The biggest and fanciest romanian mall',
-            lat: 44.43,
-            lng: 26.1
+            lat: 44.432167,
+            lng: 26.103971,
+            name: "Bucharest Fancy High School",
+            photo: "http://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gheorghe_Lazar_-_High_School.JPG/300px-Gheorghe_Lazar_-_High_School.JPG",
+            desc: 'The fanciest romanian high school',
         },
 
         friends: [{
-            fn: 'Leo',
-            ln: 'Messi',
+            fn: 'Alex',
+            ln: 'Cojocaru',
             active: 1,
         },
         {
-            fn: 'Cristi',
-            ln: 'Ronaldo',
+            fn: 'Lucian',
+            ln: 'Mondialul',
             active: 0
         }]
     };

@@ -5,7 +5,7 @@ angular.module('directives')
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/views/notification.html',
+        templateUrl: '/static/mobile/views/notification.html',
         scope: {
             message: '@'
         },

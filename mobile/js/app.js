@@ -3,13 +3,16 @@
 angular.module('controllers', []);
 angular.module('services', []);
 angular.module('directives', []);
+angular.module('resolvers', []);
 
-angular.module('apple-pi', ['ionic', 'controllers', 'services', 'directives'])
+angular.module('apple-pi', ['ionic', 'controllers', 'services', 'directives', 'resolvers'])
 .config(function ($compileProvider){
     // Needed for phonegap routing
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 })
 .config(function ($routeProvider) {
+    var Resolvers = angular.module('resolvers');
+
     $routeProvider
         .when('/', {
             redirectTo: '/login'
@@ -28,7 +31,10 @@ angular.module('apple-pi', ['ionic', 'controllers', 'services', 'directives'])
         })
         .when('/location', {
             templateUrl: 'views/location.html',
-            controller: 'Location'
+            controller: 'Location',
+            resolve: {
+                location: Resolvers.Location
+            },
         })
         .when('/friend/add', {
             templateUrl: '/views/add-friend.html',

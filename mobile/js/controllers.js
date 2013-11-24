@@ -32,9 +32,15 @@ angular.module('controllers')
             });
     }
 })
-.controller('Dashboard', function ($scope, $location, DS, User) {
+.controller('Dashboard', function ($scope, $location, Api, DS, User, Cookie) {
     $scope.user = User;
-    $scope.location = DS.location;
+    Api
+        .get('location/')
+        .success(function (data) {
+            DS.location = data;
+            $scope.location = DS.location;
+        });
+
     $scope.friends = DS.friends;
 
     $scope.openLeft = function () {
@@ -48,6 +54,22 @@ angular.module('controllers')
     $scope.logOut = function () {
         $location.path('/');
     };
+
+    $scope.checkIn = function () {
+        Api
+            .post('checkin/', {token: Cookie.get('token')})
+            .success(function (data) {
+                User.hasCheckedIn = true;
+            })
+    }
+
+    $scope.checkOut = function () {
+        Api
+            .post('checkout/', {token: Cookie.get('token')})
+            .success(function (data) {
+                User.hasCheckedIn = false;
+            })
+    }
 })
 .controller('Profile', function ($scope, User) {
     $scope.user = {
@@ -81,3 +103,14 @@ angular.module('controllers')
         $location.path('/dashboard');
     };
 });
+
+angular.module('resolvers').Location = function ($q, Api) {
+    var deferred = $q.defer();
+    return Api
+        .get('location/')
+        .success(function (data) {
+            deferred.resolve(data);
+        });
+
+    return deferred.promise;
+};

@@ -19,7 +19,8 @@
       </div>
 
       <div class="card padding">
-        <button class="button button-block button-balanced"><i class="icon ion-navigate"></i> &nbsp;&nbsp;Check in</button>
+        <button ng-if='!user.hasCheckedIn' class="button button-block button-balanced" ng-click="checkIn()"><i class="icon ion-navigate"></i> &nbsp;&nbsp;Check in</button>
+        <button ng-if='user.hasCheckedIn' class="button button-block button-balanced" ng-click="checkOut()"><i class="icon ion-navigate"></i> &nbsp;&nbsp;Check out</button>
       </div>
     </div>
   </pane>

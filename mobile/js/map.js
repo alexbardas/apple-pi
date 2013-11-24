@@ -33,7 +33,7 @@ angular.module('directives')
             angular.forEach(selections, function(selection, index) {
                 if (!angular.isString(selection) && selection.latitude && selection.longitude) {
                     var position = { lat: selection.latitude, lng: selection.longitude },
-                        marker = new L.marker(position, {icon: L.icon({iconUrl: '/images/marker-icon.png', shadowUrl: '/images/marker-shadow.png',})});
+                        marker = new L.marker(position, {icon: L.icon({iconUrl: '/static/mobile/images/marker-icon.png', shadowUrl: '/static/mobile/images/marker-shadow.png',})});
                     try {
                         map.fitBounds(marker.getBounds());
                     } catch (err) {
